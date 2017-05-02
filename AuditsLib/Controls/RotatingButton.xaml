@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="AuditControls.Controls.RotatingButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             >
+    <Viewbox>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="rootElement">
+
+            <Button Name="btnNext"
+                        Style="{DynamicResource ButtonDisable}"
+                        Cursor="Hand"
+                        Command="{Binding Path=Command}"
+                        RenderTransformOrigin="0.5,0.5"
+                        Template="{StaticResource RoundNext}" 
+                        HorizontalContentAlignment="Center" 
+                        Click="btnNext_Click">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Button.RenderTransform>
+            </Button>
+        </Grid>
+    </Viewbox>
+</UserControl>
+

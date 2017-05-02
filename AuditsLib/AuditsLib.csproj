@@ -1,0 +1,1609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69BC7F5E-7F4A-4A55-BAB2-050FB84AD000}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Audits</RootNamespace>
+    <AssemblyName>AuditsLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CorkBoard.xaml.cs">
+      <DependentUpon>CorkBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IClickBehavior.cs" />
+    <Compile Include="Controls\RequestCard.xaml.cs">
+      <DependentUpon>RequestCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RotatingButton.xaml.cs">
+      <DependentUpon>RotatingButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SlideBehavior.cs" />
+    <Compile Include="Controls\SlidePage.xaml.cs">
+      <DependentUpon>SlidePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StickItNote.xaml.cs">
+      <DependentUpon>StickItNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Switcher.xaml.cs">
+      <DependentUpon>Switcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModel\CorkBoardViewModel.cs" />
+    <Compile Include="Controls\ViewModel\DisplayNote.cs" />
+    <Compile Include="Controls\ViewModel\Note.cs" />
+    <Compile Include="Controls\ViewModel\Notes.cs" />
+    <Compile Include="Converters\BooleanToVisibilityMultiConverter.cs" />
+    <Compile Include="Converters\DecimalConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Database\ConvertDBType.cs" />
+    <Compile Include="Database\DataAccessLayer\DBContext.cs" />
+    <Compile Include="Database\DataAccessLayer\GenericRepository.cs" />
+    <Compile Include="Database\DataAccessLayer\IGenericRepository.cs" />
+    <Compile Include="Database\DataAccessLayer\Repositories.cs" />
+    <Compile Include="Database\DatabaseAttribute.cs" />
+    <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Database\DatabaseObject.cs" />
+    <Compile Include="Database\DatabaseObjects\Account.cs" />
+    <Compile Include="Database\DatabaseObjects\AccountExt.cs" />
+    <Compile Include="Database\DatabaseObjects\AccountType.cs" />
+    <Compile Include="Database\DatabaseObjects\AccountTypeExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Audit.cs" />
+    <Compile Include="Database\DatabaseObjects\AuditExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Auditor.cs" />
+    <Compile Include="Database\DatabaseObjects\AuditorExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Category.cs" />
+    <Compile Include="Database\DatabaseObjects\CategoryExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Container.cs" />
+    <Compile Include="Database\DatabaseObjects\ContainerExt.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssue.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssueExt.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssueFacility.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssueFacilityExt.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssueItem.cs" />
+    <Compile Include="Database\DatabaseObjects\DCIssueItemExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Dimension.cs" />
+    <Compile Include="Database\DatabaseObjects\DimensionExt.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailAddress.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailAddressExt.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailGroup.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailGroupExt.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailType.cs" />
+    <Compile Include="Database\DatabaseObjects\EmailTypeExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Facility.cs" />
+    <Compile Include="Database\DatabaseObjects\FacilityExt.cs" />
+    <Compile Include="Database\DatabaseObjects\FacilityType.cs" />
+    <Compile Include="Database\DatabaseObjects\FacilityTypeExt.cs" />
+    <Compile Include="Database\DatabaseObjects\FailedSample.cs" />
+    <Compile Include="Database\DatabaseObjects\FailedSampleExt.cs" />
+    <Compile Include="Database\DatabaseObjects\FailedSampleItemSheet.cs" />
+    <Compile Include="Database\DatabaseObjects\FailedSampleTableField.cs" />
+    <Compile Include="Database\DatabaseObjects\FailType.cs" />
+    <Compile Include="Database\DatabaseObjects\FailTypeExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Group.cs" />
+    <Compile Include="Database\DatabaseObjects\GroupExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Hold.cs" />
+    <Compile Include="Database\DatabaseObjects\HoldExt.cs" />
+    <Compile Include="Database\DatabaseObjects\HoldReason.cs" />
+    <Compile Include="Database\DatabaseObjects\HoldReasonExt.cs" />
+    <Compile Include="Database\DatabaseObjects\HoldReasonMapExt.cs" />
+    <Compile Include="Database\DatabaseObjects\InterfaceConverter.cs" />
+    <Compile Include="Database\DatabaseObjects\PackagingLevel.cs" />
+    <Compile Include="Database\DatabaseObjects\PackagingLevelExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Picture.cs" />
+    <Compile Include="Database\DatabaseObjects\ProjectUser.cs" />
+    <Compile Include="Database\DatabaseObjects\ProjectUserExt.cs" />
+    <Compile Include="Database\DataColumnAttribute.cs" />
+    <Compile Include="Database\DBTypeConverter.cs" />
+    <Compile Include="Database\DMSObjects\DCPO.cs" />
+    <Compile Include="Database\DMSObjects\HoldPO.cs" />
+    <Compile Include="Database\DMSObjects\IHoldPO.cs" />
+    <Compile Include="Database\DMSObjects\IPrintableAuditItem.cs" />
+    <Compile Include="Database\DMSObjects\POwithItemCombo.cs" />
+    <Compile Include="Database\DMSObjects\ReportPO.cs" />
+    <Compile Include="Database\DMSObjects\SelectablePO.cs" />
+    <Compile Include="Database\DatabaseObjects\HoldReasonMap.cs" />
+    <Compile Include="Database\HoldDecorator.cs" />
+    <Compile Include="Database\HoldRequest.cs" />
+    <Compile Include="Database\HostObjects\VendorItem.cs" />
+    <Compile Include="Database\IEmailAddress.cs" />
+    <Compile Include="Database\IEmailGroup.cs" />
+    <Compile Include="Database\IEmailType.cs" />
+    <Compile Include="Database\IGroup.cs" />
+    <Compile Include="Database\IHold.cs" />
+    <Compile Include="Database\IHoldReason.cs" />
+    <Compile Include="Database\IHoldReasonMap.cs" />
+    <Compile Include="Database\IProjectUser.cs" />
+    <Compile Include="Database\PictureDecorator.cs" />
+    <Compile Include="Database\DatabaseObjects\PictureExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Priority.cs" />
+    <Compile Include="Database\DatabaseObjects\PriorityExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Project.cs" />
+    <Compile Include="Database\DatabaseObjects\ProjectExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Rating.cs" />
+    <Compile Include="Database\DatabaseObjects\RatingExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Request.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestCategory.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestExt.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestItem.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestItemExt.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestItemType.cs" />
+    <Compile Include="Database\DatabaseObjects\RequestItemTypeExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Role.cs" />
+    <Compile Include="Database\DatabaseObjects\RoleExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Source.cs" />
+    <Compile Include="Database\RequestDecorator.cs" />
+    <Compile Include="Database\RoleDecorator.cs" />
+    <Compile Include="Database\SourceDecorator.cs" />
+    <Compile Include="Database\DatabaseObjects\SourceExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Status.cs" />
+    <Compile Include="Database\DatabaseObjects\StatusExt.cs" />
+    <Compile Include="Database\DatabaseObjects\Task.cs" />
+    <Compile Include="Database\TaskDecorator.cs" />
+    <Compile Include="Database\DatabaseObjects\TaskExt.cs" />
+    <Compile Include="Database\DatabaseObjects\User.cs" />
+    <Compile Include="Database\DatabaseObjects\UserExt.cs" />
+    <Compile Include="Database\DataSeverConnection.cs" />
+    <Compile Include="Database\DMSConnection.cs" />
+    <Compile Include="Database\DMSObjects\IDMSObject.cs" />
+    <Compile Include="Database\DMSObjects\IPO.cs" />
+    <Compile Include="Database\DMSObjects\IPOWithStatus.cs" />
+    <Compile Include="Database\DMSObjects\PO.cs" />
+    <Compile Include="Database\DMSObjects\PODecorator.cs" />
+    <Compile Include="Database\DMSObjects\POExt.cs" />
+    <Compile Include="Database\DMSObjects\POList.cs" />
+    <Compile Include="Database\DMSObjects\POListHelper.cs" />
+    <Compile Include="Database\DMSObjects\POWithStatus.cs" />
+    <Compile Include="Database\DMSObjects\SerializablePO.cs" />
+    <Compile Include="Database\HostConnection.cs" />
+    <Compile Include="Database\IAccount.cs" />
+    <Compile Include="Database\IAccountType.cs" />
+    <Compile Include="Database\IAudit.cs" />
+    <Compile Include="Database\IAuditor.cs" />
+    <Compile Include="Database\ICategory.cs" />
+    <Compile Include="Database\IContainer.cs" />
+    <Compile Include="Database\IDatabaseObject.cs" />
+    <Compile Include="Database\IDCIssue.cs" />
+    <Compile Include="Database\IDCIssueFacility.cs" />
+    <Compile Include="Database\IDCIssueItem.cs" />
+    <Compile Include="Database\IDimension.cs" />
+    <Compile Include="Database\IFacility.cs" />
+    <Compile Include="Database\IFacilityType.cs" />
+    <Compile Include="Database\IFailedSample.cs" />
+    <Compile Include="Database\IFailType.cs" />
+    <Compile Include="Database\IPackagingLevel.cs" />
+    <Compile Include="Database\IPicture.cs" />
+    <Compile Include="Database\IPriority.cs" />
+    <Compile Include="Database\IProject.cs" />
+    <Compile Include="Database\IRating.cs" />
+    <Compile Include="Database\IRequest.cs" />
+    <Compile Include="Database\IRequestItem.cs" />
+    <Compile Include="Database\IRequestItemType.cs" />
+    <Compile Include="Database\IRole.cs" />
+    <Compile Include="Database\ISource.cs" />
+    <Compile Include="Database\IStatus.cs" />
+    <Compile Include="Database\ITask.cs" />
+    <Compile Include="Database\IUser.cs" />
+    <Compile Include="Database\RequestItemDecorator.cs" />
+    <Compile Include="Database\UserDecorator.cs" />
+    <Compile Include="Display\DisplaySource.cs" />
+    <Compile Include="Display\DisplayTask.cs" />
+    <Compile Include="Display\IDisplaySource.cs" />
+    <Compile Include="Display\IDisplayTask.cs" />
+    <Compile Include="Database\DMSObjects\DCItem.cs" />
+    <Compile Include="Database\DMSObjects\DCLocation.cs" />
+    <Compile Include="Database\DMSObjects\DMSItem.cs" />
+    <Compile Include="Database\DMSObjects\IDMSItem.cs" />
+    <Compile Include="Display\INotifyAction.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\EventFocusAttachment.cs" />
+    <Compile Include="Helpers\DocFolderHelper.cs" />
+    <Compile Include="Helpers\PictureHelper.cs" />
+    <Compile Include="Helpers\SourceTypeHelper.cs" />
+    <Compile Include="IDIsplay.cs" />
+    <Compile Include="Helpers\Infastructure\Commands\DelegateCommand.cs" />
+    <Compile Include="Helpers\Infastructure\CurrentUser.cs" />
+    <Compile Include="Helpers\Infastructure\Document\DocumentPrinter.cs" />
+    <Compile Include="Helpers\Infastructure\Navigator.cs" />
+    <Compile Include="Helpers\Infastructure\ProgressReporter.cs" />
+    <Compile Include="Helpers\Infastructure\RecordNavigator.cs" />
+    <Compile Include="Interop\Email.cs" />
+    <Compile Include="Interop\IImport.cs" />
+    <Compile Include="Interop\IImportable.cs" />
+    <Compile Include="Interop\Import.cs" />
+    <Compile Include="Interop\Importer.cs" />
+    <Compile Include="Interop\ImportExt.cs" />
+    <Compile Include="Interop\ISheet.cs" />
+    <Compile Include="Interop\ISheetColumn.cs" />
+    <Compile Include="Interop\Sheet.cs" />
+    <Compile Include="Interop\SheetColumn.cs" />
+    <Compile Include="Interop\SheetColumnExt.cs" />
+    <Compile Include="Interop\SheetExt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IMessage.cs" />
+    <Compile Include="Services\IObserver.cs" />
+    <Compile Include="Services\ISubject.cs" />
+    <Compile Include="Services\MessengerService.cs" />
+    <Compile Include="Services\MessengerServiceViewModel.cs" />
+    <Compile Include="Services\MessengerWindow.xaml.cs">
+      <DependentUpon>MessengerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\POService.cs" />
+    <Compile Include="Services\Refresher.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\Services.cs" />
+    <Compile Include="Services\TaskService.cs" />
+    <Compile Include="Settings\ColorHelper.cs" />
+    <Compile Include="Settings\POStatusSetting.cs" />
+    <Compile Include="Settings\POStatusSettings.cs" />
+    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="ViewBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PORow.html" />
+    <None Include="Resources\SelectPOBase.sql" />
+    <None Include="Resources\POItmSubQryBase.sql" />
+    <None Include="Resources\GetPOsFromItemList.sql" />
+    <None Include="Resources\FindSFVBU.sql" />
+    <None Include="Resources\GetNextAvailPO.sql" />
+    <Resource Include="Assets\128px\anchor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\aperture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\arrow-down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\arrow-up.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\art.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\barchart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\batteryfull.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\batterylow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\bike.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\biker.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\bikewheel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\blimp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\bolt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\bomb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\booklet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\bookshelf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\briefcase.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\brightness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\browser.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\brush-pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\calculator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\calendar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\camera.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\car.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\carwheel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\caution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\chat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\check.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\circlecompass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\clapboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\clipboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\clock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cloud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cmyk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\colorwheel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\compass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\compose.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\computer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\contacts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\contrast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\countdown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\creditcard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\crop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\crossroads.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cruise.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\cursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\denied.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\dev.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\die.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\document.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\dolly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\door.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\download.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\easel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\eye.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\eyedropper.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\fashion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\filmreel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\filmroll.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\flame.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\flash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\flower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\focus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\frames.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\gamecontroller.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\gas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\gear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\genius.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\global.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\globe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\gps.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\hazard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\helicopter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\hotair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\hourglass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\interstate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\key.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\keyboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\lens.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\lightbulb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\loading.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\location.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\locked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\magicwand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\magnifyingglass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\mail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\map.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\megaphone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\megaphone2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\memorycard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\merge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\mic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\microphone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\money.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\motorcycle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\music.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\news.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\paintbrush.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\paintbrush2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\paintcan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\paintroller.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\parachute.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\phone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\pie-chart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\pin2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\plane.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\plugin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\polaroid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\polaroidcamera.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\polaroids.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\power.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\present.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\profle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\quote.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\racingflags.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\radio.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\radiotower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\rainbow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\recycle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\rgb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\ribbon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\roadblock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\rocket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\rulertriangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\running.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\sailboat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\schooolbus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\scissors.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\scooter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\security.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\selftimer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\shipwheel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\shoeprints.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\shop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\skateboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\slr.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\smartphone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\spaceshuttle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\speaker.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\speedometer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\spraypaint.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\stack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\steeringwheel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\sub.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\submarine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\support.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\swatches.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\tablet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\takeoff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\target.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\taxi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\toolbox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\tools.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\tractor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\traffic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\train.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\travelerbag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\trends.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\tripod.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\trophy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\truck.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\tv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\typography.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\ufo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\umbrella.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\unicycle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\unlocked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\upload.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\video.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\videocameraclassic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\videocameracompact.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\volume.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\water.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\weather.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\windsock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\windy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\zoomin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\128px\zoomout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\64px\anchor.png" />
+    <Resource Include="Assets\64px\aperture.png" />
+    <Resource Include="Assets\64px\arrow-down.png" />
+    <Resource Include="Assets\64px\arrow-up.png" />
+    <Resource Include="Assets\64px\art.png" />
+    <Resource Include="Assets\64px\barchart.png" />
+    <Resource Include="Assets\64px\batteryfull.png" />
+    <Resource Include="Assets\64px\batterylow.png" />
+    <Resource Include="Assets\64px\bike.png" />
+    <Resource Include="Assets\64px\biker.png" />
+    <Resource Include="Assets\64px\bikewheel.png" />
+    <Resource Include="Assets\64px\blimp.png" />
+    <Resource Include="Assets\64px\bolt.png" />
+    <Resource Include="Assets\64px\bomb.png" />
+    <Resource Include="Assets\64px\booklet.png" />
+    <Resource Include="Assets\64px\bookshelf.png" />
+    <Resource Include="Assets\64px\briefcase.png" />
+    <Resource Include="Assets\64px\brightness.png" />
+    <Resource Include="Assets\64px\browser.png" />
+    <Resource Include="Assets\64px\brush-pencil.png" />
+    <Resource Include="Assets\64px\calculator.png" />
+    <Resource Include="Assets\64px\calendar.png" />
+    <Resource Include="Assets\64px\camera.png" />
+    <Resource Include="Assets\64px\car.png" />
+    <Resource Include="Assets\64px\cart.png" />
+    <Resource Include="Assets\64px\carwheel.png" />
+    <Resource Include="Assets\64px\caution.png" />
+    <Resource Include="Assets\64px\chat.png" />
+    <Resource Include="Assets\64px\check.png" />
+    <Resource Include="Assets\64px\circlecompass.png" />
+    <Resource Include="Assets\64px\clapboard.png" />
+    <Resource Include="Assets\64px\clipboard.png" />
+    <Resource Include="Assets\64px\clock.png" />
+    <Resource Include="Assets\64px\cloud.png" />
+    <Resource Include="Assets\64px\cmyk.png" />
+    <Resource Include="Assets\64px\colorwheel.png" />
+    <Resource Include="Assets\64px\compass.png" />
+    <Resource Include="Assets\64px\compose.png" />
+    <Resource Include="Assets\64px\computer.png" />
+    <Resource Include="Assets\64px\cone.png" />
+    <Resource Include="Assets\64px\contacts.png" />
+    <Resource Include="Assets\64px\contrast.png" />
+    <Resource Include="Assets\64px\countdown.png" />
+    <Resource Include="Assets\64px\creditcard.png" />
+    <Resource Include="Assets\64px\crop.png" />
+    <Resource Include="Assets\64px\crossroads.png" />
+    <Resource Include="Assets\64px\cruise.png" />
+    <Resource Include="Assets\64px\cursor.png" />
+    <Resource Include="Assets\64px\denied.png" />
+    <Resource Include="Assets\64px\dev.png" />
+    <Resource Include="Assets\64px\die.png" />
+    <Resource Include="Assets\64px\document.png" />
+    <Resource Include="Assets\64px\dolly.png" />
+    <Resource Include="Assets\64px\door.png" />
+    <Resource Include="Assets\64px\download.png" />
+    <Resource Include="Assets\64px\easel.png" />
+    <Resource Include="Assets\64px\email.png" />
+    <Resource Include="Assets\64px\eye.png" />
+    <Resource Include="Assets\64px\eyedropper.png" />
+    <Resource Include="Assets\64px\fashion.png" />
+    <Resource Include="Assets\64px\filmreel.png" />
+    <Resource Include="Assets\64px\filmroll.png" />
+    <Resource Include="Assets\64px\flag.png" />
+    <Resource Include="Assets\64px\flame.png" />
+    <Resource Include="Assets\64px\flash.png" />
+    <Resource Include="Assets\64px\flower.png" />
+    <Resource Include="Assets\64px\focus.png" />
+    <Resource Include="Assets\64px\folder.png" />
+    <Resource Include="Assets\64px\frames.png" />
+    <Resource Include="Assets\64px\gamecontroller.png" />
+    <Resource Include="Assets\64px\gas.png" />
+    <Resource Include="Assets\64px\gear.png" />
+    <Resource Include="Assets\64px\genius.png" />
+    <Resource Include="Assets\64px\global.png" />
+    <Resource Include="Assets\64px\globe.png" />
+    <Resource Include="Assets\64px\gps.png" />
+    <Resource Include="Assets\64px\hazard.png" />
+    <Resource Include="Assets\64px\heart.png" />
+    <Resource Include="Assets\64px\helicopter.png" />
+    <Resource Include="Assets\64px\hotair.png" />
+    <Resource Include="Assets\64px\hourglass.png" />
+    <Resource Include="Assets\64px\image.png" />
+    <Resource Include="Assets\64px\interstate.png" />
+    <Resource Include="Assets\64px\key.png" />
+    <Resource Include="Assets\64px\keyboard.png" />
+    <Resource Include="Assets\64px\lens.png" />
+    <Resource Include="Assets\64px\lightbulb.png" />
+    <Resource Include="Assets\64px\loading.png" />
+    <Resource Include="Assets\64px\location.png" />
+    <Resource Include="Assets\64px\locked.png" />
+    <Resource Include="Assets\64px\magicwand.png" />
+    <Resource Include="Assets\64px\magnifyingglass.png" />
+    <Resource Include="Assets\64px\mail.png" />
+    <Resource Include="Assets\64px\map.png" />
+    <Resource Include="Assets\64px\megaphone.png" />
+    <Resource Include="Assets\64px\megaphone2.png" />
+    <Resource Include="Assets\64px\memorycard.png" />
+    <Resource Include="Assets\64px\merge.png" />
+    <Resource Include="Assets\64px\mic.png" />
+    <Resource Include="Assets\64px\microphone.png" />
+    <Resource Include="Assets\64px\money.png" />
+    <Resource Include="Assets\64px\motorcycle.png" />
+    <Resource Include="Assets\64px\music.png" />
+    <Resource Include="Assets\64px\news.png" />
+    <Resource Include="Assets\64px\paintbrush.png" />
+    <Resource Include="Assets\64px\paintbrush2.png" />
+    <Resource Include="Assets\64px\paintcan.png" />
+    <Resource Include="Assets\64px\paintroller.png" />
+    <Resource Include="Assets\64px\parachute.png" />
+    <Resource Include="Assets\64px\pencil.png" />
+    <Resource Include="Assets\64px\phone.png" />
+    <Resource Include="Assets\64px\piechart.png" />
+    <Resource Include="Assets\64px\pin.png" />
+    <Resource Include="Assets\64px\pin2.png" />
+    <Resource Include="Assets\64px\plane.png" />
+    <Resource Include="Assets\64px\play.png" />
+    <Resource Include="Assets\64px\plugin.png" />
+    <Resource Include="Assets\64px\polaroid.png" />
+    <Resource Include="Assets\64px\polaroidcamera.png" />
+    <Resource Include="Assets\64px\polaroids.png" />
+    <Resource Include="Assets\64px\power.png" />
+    <Resource Include="Assets\64px\present.png" />
+    <Resource Include="Assets\64px\profle.png" />
+    <Resource Include="Assets\64px\quote.png" />
+    <Resource Include="Assets\64px\racingflags.png" />
+    <Resource Include="Assets\64px\radio.png" />
+    <Resource Include="Assets\64px\radiotower.png" />
+    <Resource Include="Assets\64px\rainbow.png" />
+    <Resource Include="Assets\64px\recycle.png" />
+    <Resource Include="Assets\64px\rgb.png" />
+    <Resource Include="Assets\64px\ribbon.png" />
+    <Resource Include="Assets\64px\roadblock.png" />
+    <Resource Include="Assets\64px\rocket.png" />
+    <Resource Include="Assets\64px\rulertriangle.png" />
+    <Resource Include="Assets\64px\running.png" />
+    <Resource Include="Assets\64px\sailboat.png" />
+    <Resource Include="Assets\64px\schooolbus.png" />
+    <Resource Include="Assets\64px\scissors.png" />
+    <Resource Include="Assets\64px\scooter.png" />
+    <Resource Include="Assets\64px\security.png" />
+    <Resource Include="Assets\64px\selftimer.png" />
+    <Resource Include="Assets\64px\settings.png" />
+    <Resource Include="Assets\64px\shipwheel.png" />
+    <Resource Include="Assets\64px\shoeprints.png" />
+    <Resource Include="Assets\64px\shop.png" />
+    <Resource Include="Assets\64px\skateboard.png" />
+    <Resource Include="Assets\64px\slr.png" />
+    <Resource Include="Assets\64px\smartphone.png" />
+    <Resource Include="Assets\64px\spaceshuttle.png" />
+    <Resource Include="Assets\64px\speaker.png" />
+    <Resource Include="Assets\64px\speedometer.png" />
+    <Resource Include="Assets\64px\spraypaint.png" />
+    <Resource Include="Assets\64px\stack.png" />
+    <Resource Include="Assets\64px\star.png" />
+    <Resource Include="Assets\64px\steeringwheel.png" />
+    <Resource Include="Assets\64px\stop.png" />
+    <Resource Include="Assets\64px\sub.png" />
+    <Resource Include="Assets\64px\submarine.png" />
+    <Resource Include="Assets\64px\support.png" />
+    <Resource Include="Assets\64px\swatches.png" />
+    <Resource Include="Assets\64px\tablet.png" />
+    <Resource Include="Assets\64px\takeoff.png" />
+    <Resource Include="Assets\64px\target.png" />
+    <Resource Include="Assets\64px\taxi.png" />
+    <Resource Include="Assets\64px\toolbox.png" />
+    <Resource Include="Assets\64px\tools.png" />
+    <Resource Include="Assets\64px\tractor.png" />
+    <Resource Include="Assets\64px\traffic.png" />
+    <Resource Include="Assets\64px\train.png" />
+    <Resource Include="Assets\64px\travelerbag.png" />
+    <Resource Include="Assets\64px\trends.png" />
+    <Resource Include="Assets\64px\tripod.png" />
+    <Resource Include="Assets\64px\trophy.png" />
+    <Resource Include="Assets\64px\truck.png" />
+    <Resource Include="Assets\64px\tv.png" />
+    <Resource Include="Assets\64px\typography.png" />
+    <Resource Include="Assets\64px\ufo.png" />
+    <Resource Include="Assets\64px\umbrella.png" />
+    <Resource Include="Assets\64px\unicycle.png" />
+    <Resource Include="Assets\64px\unlocked.png" />
+    <Resource Include="Assets\64px\upload.png" />
+    <Resource Include="Assets\64px\video.png" />
+    <Resource Include="Assets\64px\videocameraclassic.png" />
+    <Resource Include="Assets\64px\videocameracompact.png" />
+    <Resource Include="Assets\64px\volume.png" />
+    <Resource Include="Assets\64px\water.png" />
+    <Resource Include="Assets\64px\weather.png" />
+    <Resource Include="Assets\64px\windsock.png" />
+    <Resource Include="Assets\64px\windy.png" />
+    <Resource Include="Assets\64px\x.png" />
+    <Resource Include="Assets\64px\zoomin.png" />
+    <Resource Include="Assets\64px\zoomout.png" />
+    <Resource Include="Assets\Logos\LowesBanner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logos\LowesWhite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logos\PagotaWeb.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logos\AuditAppIcon.png" />
+    <Resource Include="Assets\Logos\AuditAppIcon2.png" />
+    <Resource Include="Assets\Logos\AuditLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logos\lowes_logo_white.png" />
+    <Content Include="Assets\Monochrome\128px\anchor.png" />
+    <Content Include="Assets\Monochrome\128px\aperture.png" />
+    <Content Include="Assets\Monochrome\128px\arrow-down.png" />
+    <Content Include="Assets\Monochrome\128px\arrow-up.png" />
+    <Content Include="Assets\Monochrome\128px\art.png" />
+    <Content Include="Assets\Monochrome\128px\barchart.png" />
+    <Content Include="Assets\Monochrome\128px\batteryfull.png" />
+    <Content Include="Assets\Monochrome\128px\batterylow.png" />
+    <Content Include="Assets\Monochrome\128px\bike.png" />
+    <Content Include="Assets\Monochrome\128px\biker.png" />
+    <Content Include="Assets\Monochrome\128px\bikewheel.png" />
+    <Content Include="Assets\Monochrome\128px\blimp.png" />
+    <Content Include="Assets\Monochrome\128px\bolt.png" />
+    <Content Include="Assets\Monochrome\128px\bomb.png" />
+    <Content Include="Assets\Monochrome\128px\booklet.png" />
+    <Content Include="Assets\Monochrome\128px\bookshelf.png" />
+    <Content Include="Assets\Monochrome\128px\briefcase.png" />
+    <Content Include="Assets\Monochrome\128px\brightness.png" />
+    <Content Include="Assets\Monochrome\128px\browser.png" />
+    <Content Include="Assets\Monochrome\128px\brush-pencil.png" />
+    <Content Include="Assets\Monochrome\128px\calculator.png" />
+    <Content Include="Assets\Monochrome\128px\calendar.png" />
+    <Content Include="Assets\Monochrome\128px\camera.png" />
+    <Content Include="Assets\Monochrome\128px\car.png" />
+    <Content Include="Assets\Monochrome\128px\cart.png" />
+    <Content Include="Assets\Monochrome\128px\carwheel.png" />
+    <Content Include="Assets\Monochrome\128px\caution.png" />
+    <Content Include="Assets\Monochrome\128px\chat.png" />
+    <Content Include="Assets\Monochrome\128px\check.png" />
+    <Content Include="Assets\Monochrome\128px\circlecompass.png" />
+    <Content Include="Assets\Monochrome\128px\clapboard.png" />
+    <Content Include="Assets\Monochrome\128px\clipboard.png" />
+    <Content Include="Assets\Monochrome\128px\clock.png" />
+    <Content Include="Assets\Monochrome\128px\cloud.png" />
+    <Content Include="Assets\Monochrome\128px\cmyk.png" />
+    <Content Include="Assets\Monochrome\128px\colorwheel.png" />
+    <Content Include="Assets\Monochrome\128px\compass.png" />
+    <Content Include="Assets\Monochrome\128px\compose.png" />
+    <Content Include="Assets\Monochrome\128px\computer.png" />
+    <Content Include="Assets\Monochrome\128px\cone.png" />
+    <Content Include="Assets\Monochrome\128px\contacts.png" />
+    <Content Include="Assets\Monochrome\128px\contrast.png" />
+    <Content Include="Assets\Monochrome\128px\countdown.png" />
+    <Content Include="Assets\Monochrome\128px\creditcard.png" />
+    <Content Include="Assets\Monochrome\128px\crop.png" />
+    <Content Include="Assets\Monochrome\128px\crossroads.png" />
+    <Content Include="Assets\Monochrome\128px\cruise.png" />
+    <Content Include="Assets\Monochrome\128px\cursor.png" />
+    <Content Include="Assets\Monochrome\128px\denied.png" />
+    <Content Include="Assets\Monochrome\128px\dev.png" />
+    <Content Include="Assets\Monochrome\128px\die.png" />
+    <Content Include="Assets\Monochrome\128px\document.png" />
+    <Content Include="Assets\Monochrome\128px\dolly.png" />
+    <Content Include="Assets\Monochrome\128px\door.png" />
+    <Content Include="Assets\Monochrome\128px\download.png" />
+    <Content Include="Assets\Monochrome\128px\easel.png" />
+    <Content Include="Assets\Monochrome\128px\email.png" />
+    <Content Include="Assets\Monochrome\128px\eye.png" />
+    <Content Include="Assets\Monochrome\128px\eyedropper.png" />
+    <Content Include="Assets\Monochrome\128px\fashion.png" />
+    <Content Include="Assets\Monochrome\128px\filmreel.png" />
+    <Content Include="Assets\Monochrome\128px\filmroll.png" />
+    <Content Include="Assets\Monochrome\128px\flag.png" />
+    <Content Include="Assets\Monochrome\128px\flame.png" />
+    <Content Include="Assets\Monochrome\128px\flash.png" />
+    <Content Include="Assets\Monochrome\128px\flower.png" />
+    <Content Include="Assets\Monochrome\128px\focus.png" />
+    <Content Include="Assets\Monochrome\128px\folder.png" />
+    <Content Include="Assets\Monochrome\128px\frames.png" />
+    <Content Include="Assets\Monochrome\128px\gamecontroller.png" />
+    <Content Include="Assets\Monochrome\128px\gas.png" />
+    <Content Include="Assets\Monochrome\128px\gear.png" />
+    <Content Include="Assets\Monochrome\128px\genius.png" />
+    <Content Include="Assets\Monochrome\128px\global.png" />
+    <Content Include="Assets\Monochrome\128px\globe.png" />
+    <Content Include="Assets\Monochrome\128px\gps.png" />
+    <Content Include="Assets\Monochrome\128px\hazard.png" />
+    <Content Include="Assets\Monochrome\128px\heart.png" />
+    <Content Include="Assets\Monochrome\128px\helicopter.png" />
+    <Content Include="Assets\Monochrome\128px\hotair.png" />
+    <Content Include="Assets\Monochrome\128px\hourglass.png" />
+    <Content Include="Assets\Monochrome\128px\image.png" />
+    <Content Include="Assets\Monochrome\128px\interstate.png" />
+    <Content Include="Assets\Monochrome\128px\key.png" />
+    <Content Include="Assets\Monochrome\128px\keyboard.png" />
+    <Content Include="Assets\Monochrome\128px\lens.png" />
+    <Content Include="Assets\Monochrome\128px\lightbulb.png" />
+    <Content Include="Assets\Monochrome\128px\loading.png" />
+    <Content Include="Assets\Monochrome\128px\location.png" />
+    <Content Include="Assets\Monochrome\128px\locked.png" />
+    <Content Include="Assets\Monochrome\128px\magicwand.png" />
+    <Content Include="Assets\Monochrome\128px\magnifyingglass.png" />
+    <Content Include="Assets\Monochrome\128px\mail.png" />
+    <Content Include="Assets\Monochrome\128px\map.png" />
+    <Content Include="Assets\Monochrome\128px\megaphone.png" />
+    <Content Include="Assets\Monochrome\128px\megaphone2.png" />
+    <Content Include="Assets\Monochrome\128px\memorycard.png" />
+    <Content Include="Assets\Monochrome\128px\merge.png" />
+    <Content Include="Assets\Monochrome\128px\mic.png" />
+    <Content Include="Assets\Monochrome\128px\microphone.png" />
+    <Content Include="Assets\Monochrome\128px\money.png" />
+    <Content Include="Assets\Monochrome\128px\motorcycle.png" />
+    <Content Include="Assets\Monochrome\128px\music.png" />
+    <Content Include="Assets\Monochrome\128px\news.png" />
+    <Content Include="Assets\Monochrome\128px\paintbrush.png" />
+    <Content Include="Assets\Monochrome\128px\paintbrush2.png" />
+    <Content Include="Assets\Monochrome\128px\paintcan.png" />
+    <Content Include="Assets\Monochrome\128px\paintroller.png" />
+    <Content Include="Assets\Monochrome\128px\parachute.png" />
+    <Content Include="Assets\Monochrome\128px\pencil.png" />
+    <Content Include="Assets\Monochrome\128px\phone.png" />
+    <Content Include="Assets\Monochrome\128px\piechart.png" />
+    <Content Include="Assets\Monochrome\128px\pin.png" />
+    <Content Include="Assets\Monochrome\128px\pin2.png" />
+    <Content Include="Assets\Monochrome\128px\plane.png" />
+    <Content Include="Assets\Monochrome\128px\play.png" />
+    <Content Include="Assets\Monochrome\128px\plugin.png" />
+    <Content Include="Assets\Monochrome\128px\polaroid.png" />
+    <Content Include="Assets\Monochrome\128px\polaroidcamera.png" />
+    <Content Include="Assets\Monochrome\128px\polaroids.png" />
+    <Content Include="Assets\Monochrome\128px\power.png" />
+    <Content Include="Assets\Monochrome\128px\present.png" />
+    <Content Include="Assets\Monochrome\128px\profle.png" />
+    <Content Include="Assets\Monochrome\128px\quote.png" />
+    <Content Include="Assets\Monochrome\128px\racingflags.png" />
+    <Content Include="Assets\Monochrome\128px\radio.png" />
+    <Content Include="Assets\Monochrome\128px\radiotower.png" />
+    <Content Include="Assets\Monochrome\128px\rainbow.png" />
+    <Content Include="Assets\Monochrome\128px\recycle.png" />
+    <Content Include="Assets\Monochrome\128px\rgb.png" />
+    <Content Include="Assets\Monochrome\128px\ribbon.png" />
+    <Content Include="Assets\Monochrome\128px\roadblock.png" />
+    <Content Include="Assets\Monochrome\128px\rocket.png" />
+    <Content Include="Assets\Monochrome\128px\rulertriangle.png" />
+    <Content Include="Assets\Monochrome\128px\running.png" />
+    <Content Include="Assets\Monochrome\128px\sailboat.png" />
+    <Content Include="Assets\Monochrome\128px\schooolbus.png" />
+    <Content Include="Assets\Monochrome\128px\scissors.png" />
+    <Content Include="Assets\Monochrome\128px\scooter.png" />
+    <Content Include="Assets\Monochrome\128px\security.png" />
+    <Content Include="Assets\Monochrome\128px\selftimer.png" />
+    <Content Include="Assets\Monochrome\128px\settings.png" />
+    <Content Include="Assets\Monochrome\128px\shipwheel.png" />
+    <Content Include="Assets\Monochrome\128px\shoeprints.png" />
+    <Content Include="Assets\Monochrome\128px\shop.png" />
+    <Content Include="Assets\Monochrome\128px\skateboard.png" />
+    <Content Include="Assets\Monochrome\128px\slr.png" />
+    <Content Include="Assets\Monochrome\128px\smartphone.png" />
+    <Content Include="Assets\Monochrome\128px\spaceshuttle.png" />
+    <Content Include="Assets\Monochrome\128px\speaker.png" />
+    <Content Include="Assets\Monochrome\128px\speedometer.png" />
+    <Content Include="Assets\Monochrome\128px\spraypaint.png" />
+    <Content Include="Assets\Monochrome\128px\stack.png" />
+    <Content Include="Assets\Monochrome\128px\star.png" />
+    <Content Include="Assets\Monochrome\128px\steeringwheel.png" />
+    <Content Include="Assets\Monochrome\128px\stop.png" />
+    <Content Include="Assets\Monochrome\128px\sub.png" />
+    <Content Include="Assets\Monochrome\128px\submarine.png" />
+    <Content Include="Assets\Monochrome\128px\support.png" />
+    <Content Include="Assets\Monochrome\128px\swatches.png" />
+    <Content Include="Assets\Monochrome\128px\tablet.png" />
+    <Content Include="Assets\Monochrome\128px\takeoff.png" />
+    <Content Include="Assets\Monochrome\128px\target.png" />
+    <Content Include="Assets\Monochrome\128px\taxi.png" />
+    <Content Include="Assets\Monochrome\128px\toolbox.png" />
+    <Content Include="Assets\Monochrome\128px\tools.png" />
+    <Content Include="Assets\Monochrome\128px\tractor.png" />
+    <Content Include="Assets\Monochrome\128px\traffic.png" />
+    <Content Include="Assets\Monochrome\128px\train.png" />
+    <Content Include="Assets\Monochrome\128px\travelerbag.png" />
+    <Content Include="Assets\Monochrome\128px\trends.png" />
+    <Content Include="Assets\Monochrome\128px\tripod.png" />
+    <Content Include="Assets\Monochrome\128px\trophy.png" />
+    <Content Include="Assets\Monochrome\128px\truck.png" />
+    <Content Include="Assets\Monochrome\128px\tv.png" />
+    <Content Include="Assets\Monochrome\128px\typography.png" />
+    <Content Include="Assets\Monochrome\128px\ufo.png" />
+    <Content Include="Assets\Monochrome\128px\umbrella.png" />
+    <Content Include="Assets\Monochrome\128px\unicycle.png" />
+    <Content Include="Assets\Monochrome\128px\unlocked.png" />
+    <Content Include="Assets\Monochrome\128px\upload.png" />
+    <Content Include="Assets\Monochrome\128px\video.png" />
+    <Content Include="Assets\Monochrome\128px\videocameraclassic.png" />
+    <Content Include="Assets\Monochrome\128px\videocameracompact.png" />
+    <Content Include="Assets\Monochrome\128px\volume.png" />
+    <Content Include="Assets\Monochrome\128px\water.png" />
+    <Content Include="Assets\Monochrome\128px\weather.png" />
+    <Content Include="Assets\Monochrome\128px\windsock.png" />
+    <Content Include="Assets\Monochrome\128px\windy.png" />
+    <Content Include="Assets\Monochrome\128px\x.png" />
+    <Content Include="Assets\Monochrome\128px\zoomin.png" />
+    <Content Include="Assets\Monochrome\128px\zoomout.png" />
+    <Resource Include="Assets\Monochrome\64px\anchor.png" />
+    <Resource Include="Assets\Monochrome\64px\aperture.png" />
+    <Resource Include="Assets\Monochrome\64px\arrow-down.png" />
+    <Resource Include="Assets\Monochrome\64px\arrow-up.png" />
+    <Resource Include="Assets\Monochrome\64px\art.png" />
+    <Resource Include="Assets\Monochrome\64px\barchart.png" />
+    <Resource Include="Assets\Monochrome\64px\batteryfull.png" />
+    <Resource Include="Assets\Monochrome\64px\batterylow.png" />
+    <Resource Include="Assets\Monochrome\64px\bike.png" />
+    <Resource Include="Assets\Monochrome\64px\biker.png" />
+    <Resource Include="Assets\Monochrome\64px\bikewheel.png" />
+    <Resource Include="Assets\Monochrome\64px\blimp.png" />
+    <Resource Include="Assets\Monochrome\64px\bolt.png" />
+    <Resource Include="Assets\Monochrome\64px\bomb.png" />
+    <Resource Include="Assets\Monochrome\64px\booklet.png" />
+    <Resource Include="Assets\Monochrome\64px\bookshelf.png" />
+    <Resource Include="Assets\Monochrome\64px\briefcase.png" />
+    <Resource Include="Assets\Monochrome\64px\brightness.png" />
+    <Resource Include="Assets\Monochrome\64px\browser.png" />
+    <Resource Include="Assets\Monochrome\64px\brush-pencil.png" />
+    <Resource Include="Assets\Monochrome\64px\calculator.png" />
+    <Resource Include="Assets\Monochrome\64px\calendar.png" />
+    <Resource Include="Assets\Monochrome\64px\camera.png" />
+    <Resource Include="Assets\Monochrome\64px\car.png" />
+    <Resource Include="Assets\Monochrome\64px\cart.png" />
+    <Resource Include="Assets\Monochrome\64px\carwheel.png" />
+    <Resource Include="Assets\Monochrome\64px\caution.png" />
+    <Resource Include="Assets\Monochrome\64px\chat.png" />
+    <Resource Include="Assets\Monochrome\64px\check.png" />
+    <Resource Include="Assets\Monochrome\64px\circlecompass.png" />
+    <Resource Include="Assets\Monochrome\64px\clapboard.png" />
+    <Resource Include="Assets\Monochrome\64px\clipboard.png" />
+    <Resource Include="Assets\Monochrome\64px\clock.png" />
+    <Resource Include="Assets\Monochrome\64px\cloud.png" />
+    <Resource Include="Assets\Monochrome\64px\cmyk.png" />
+    <Resource Include="Assets\Monochrome\64px\colorwheel.png" />
+    <Resource Include="Assets\Monochrome\64px\compass.png" />
+    <Resource Include="Assets\Monochrome\64px\compose.png" />
+    <Resource Include="Assets\Monochrome\64px\computer.png" />
+    <Resource Include="Assets\Monochrome\64px\cone.png" />
+    <Resource Include="Assets\Monochrome\64px\contacts.png" />
+    <Resource Include="Assets\Monochrome\64px\contrast.png" />
+    <Resource Include="Assets\Monochrome\64px\countdown.png" />
+    <Resource Include="Assets\Monochrome\64px\creditcard.png" />
+    <Resource Include="Assets\Monochrome\64px\crop.png" />
+    <Resource Include="Assets\Monochrome\64px\crossroads.png" />
+    <Resource Include="Assets\Monochrome\64px\cruise.png" />
+    <Resource Include="Assets\Monochrome\64px\cursor.png" />
+    <Resource Include="Assets\Monochrome\64px\denied.png" />
+    <Resource Include="Assets\Monochrome\64px\dev.png" />
+    <Resource Include="Assets\Monochrome\64px\die.png" />
+    <Resource Include="Assets\Monochrome\64px\document.png" />
+    <Resource Include="Assets\Monochrome\64px\dolly.png" />
+    <Resource Include="Assets\Monochrome\64px\door.png" />
+    <Resource Include="Assets\Monochrome\64px\download.png" />
+    <Resource Include="Assets\Monochrome\64px\easel.png" />
+    <Resource Include="Assets\Monochrome\64px\email.png" />
+    <Resource Include="Assets\Monochrome\64px\eye.png" />
+    <Resource Include="Assets\Monochrome\64px\eyedropper.png" />
+    <Resource Include="Assets\Monochrome\64px\fashion.png" />
+    <Resource Include="Assets\Monochrome\64px\filmreel.png" />
+    <Resource Include="Assets\Monochrome\64px\filmroll.png" />
+    <Resource Include="Assets\Monochrome\64px\flag.png" />
+    <Resource Include="Assets\Monochrome\64px\flame.png" />
+    <Resource Include="Assets\Monochrome\64px\flash.png" />
+    <Resource Include="Assets\Monochrome\64px\flower.png" />
+    <Resource Include="Assets\Monochrome\64px\focus.png" />
+    <Resource Include="Assets\Monochrome\64px\folder.png" />
+    <Resource Include="Assets\Monochrome\64px\frames.png" />
+    <Resource Include="Assets\Monochrome\64px\gamecontroller.png" />
+    <Resource Include="Assets\Monochrome\64px\gas.png" />
+    <Resource Include="Assets\Monochrome\64px\gear.png" />
+    <Resource Include="Assets\Monochrome\64px\genius.png" />
+    <Resource Include="Assets\Monochrome\64px\global.png" />
+    <Resource Include="Assets\Monochrome\64px\globe.png" />
+    <Resource Include="Assets\Monochrome\64px\gps.png" />
+    <Resource Include="Assets\Monochrome\64px\hazard.png" />
+    <Resource Include="Assets\Monochrome\64px\heart.png" />
+    <Resource Include="Assets\Monochrome\64px\helicopter.png" />
+    <Resource Include="Assets\Monochrome\64px\hotair.png" />
+    <Resource Include="Assets\Monochrome\64px\hourglass.png" />
+    <Resource Include="Assets\Monochrome\64px\image.png" />
+    <Resource Include="Assets\Monochrome\64px\interstate.png" />
+    <Resource Include="Assets\Monochrome\64px\key.png" />
+    <Resource Include="Assets\Monochrome\64px\keyboard.png" />
+    <Resource Include="Assets\Monochrome\64px\lens.png" />
+    <Resource Include="Assets\Monochrome\64px\lightbulb.png" />
+    <Resource Include="Assets\Monochrome\64px\loading.png" />
+    <Resource Include="Assets\Monochrome\64px\location.png" />
+    <Resource Include="Assets\Monochrome\64px\locked.png" />
+    <Resource Include="Assets\Monochrome\64px\magicwand.png" />
+    <Resource Include="Assets\Monochrome\64px\magnifyingglass.png" />
+    <Resource Include="Assets\Monochrome\64px\mail.png" />
+    <Resource Include="Assets\Monochrome\64px\map.png" />
+    <Resource Include="Assets\Monochrome\64px\megaphone.png" />
+    <Resource Include="Assets\Monochrome\64px\megaphone2.png" />
+    <Resource Include="Assets\Monochrome\64px\memorycard.png" />
+    <Resource Include="Assets\Monochrome\64px\merge.png" />
+    <Resource Include="Assets\Monochrome\64px\mic.png" />
+    <Resource Include="Assets\Monochrome\64px\microphone.png" />
+    <Resource Include="Assets\Monochrome\64px\money.png" />
+    <Resource Include="Assets\Monochrome\64px\motorcycle.png" />
+    <Resource Include="Assets\Monochrome\64px\music.png" />
+    <Resource Include="Assets\Monochrome\64px\news.png" />
+    <Resource Include="Assets\Monochrome\64px\paintbrush.png" />
+    <Resource Include="Assets\Monochrome\64px\paintbrush2.png" />
+    <Resource Include="Assets\Monochrome\64px\paintcan.png" />
+    <Resource Include="Assets\Monochrome\64px\paintroller.png" />
+    <Resource Include="Assets\Monochrome\64px\parachute.png" />
+    <Resource Include="Assets\Monochrome\64px\pencil.png" />
+    <Resource Include="Assets\Monochrome\64px\phone.png" />
+    <Resource Include="Assets\Monochrome\64px\piechart.png" />
+    <Resource Include="Assets\Monochrome\64px\pin.png" />
+    <Resource Include="Assets\Monochrome\64px\pin2.png" />
+    <Resource Include="Assets\Monochrome\64px\plane.png" />
+    <Resource Include="Assets\Monochrome\64px\play.png" />
+    <Resource Include="Assets\Monochrome\64px\plugin.png" />
+    <Resource Include="Assets\Monochrome\64px\polaroid.png" />
+    <Resource Include="Assets\Monochrome\64px\polaroidcamera.png" />
+    <Resource Include="Assets\Monochrome\64px\polaroids.png" />
+    <Resource Include="Assets\Monochrome\64px\power.png" />
+    <Resource Include="Assets\Monochrome\64px\present.png" />
+    <Resource Include="Assets\Monochrome\64px\profle.png" />
+    <Resource Include="Assets\Monochrome\64px\quote.png" />
+    <Resource Include="Assets\Monochrome\64px\racingflags.png" />
+    <Resource Include="Assets\Monochrome\64px\radio.png" />
+    <Resource Include="Assets\Monochrome\64px\radiotower.png" />
+    <Resource Include="Assets\Monochrome\64px\rainbow.png" />
+    <Resource Include="Assets\Monochrome\64px\recycle.png" />
+    <Resource Include="Assets\Monochrome\64px\rgb.png" />
+    <Resource Include="Assets\Monochrome\64px\ribbon.png" />
+    <Resource Include="Assets\Monochrome\64px\roadblock.png" />
+    <Resource Include="Assets\Monochrome\64px\rocket.png" />
+    <Resource Include="Assets\Monochrome\64px\rulertriangle.png" />
+    <Resource Include="Assets\Monochrome\64px\running.png" />
+    <Resource Include="Assets\Monochrome\64px\sailboat.png" />
+    <Resource Include="Assets\Monochrome\64px\schooolbus.png" />
+    <Resource Include="Assets\Monochrome\64px\scissors.png" />
+    <Resource Include="Assets\Monochrome\64px\scooter.png" />
+    <Resource Include="Assets\Monochrome\64px\security.png" />
+    <Resource Include="Assets\Monochrome\64px\selftimer.png" />
+    <Resource Include="Assets\Monochrome\64px\settings.png" />
+    <Resource Include="Assets\Monochrome\64px\shipwheel.png" />
+    <Resource Include="Assets\Monochrome\64px\shoeprints.png" />
+    <Resource Include="Assets\Monochrome\64px\shop.png" />
+    <Resource Include="Assets\Monochrome\64px\skateboard.png" />
+    <Resource Include="Assets\Monochrome\64px\slr.png" />
+    <Resource Include="Assets\Monochrome\64px\smartphone.png" />
+    <Resource Include="Assets\Monochrome\64px\spaceshuttle.png" />
+    <Resource Include="Assets\Monochrome\64px\speaker.png" />
+    <Resource Include="Assets\Monochrome\64px\speedometer.png" />
+    <Resource Include="Assets\Monochrome\64px\spraypaint.png" />
+    <Resource Include="Assets\Monochrome\64px\stack.png" />
+    <Resource Include="Assets\Monochrome\64px\star.png" />
+    <Resource Include="Assets\Monochrome\64px\steeringwheel.png" />
+    <Resource Include="Assets\Monochrome\64px\stop.png" />
+    <Resource Include="Assets\Monochrome\64px\sub.png" />
+    <Resource Include="Assets\Monochrome\64px\submarine.png" />
+    <Resource Include="Assets\Monochrome\64px\support.png" />
+    <Resource Include="Assets\Monochrome\64px\swatches.png" />
+    <Resource Include="Assets\Monochrome\64px\tablet.png" />
+    <Resource Include="Assets\Monochrome\64px\takeoff.png" />
+    <Resource Include="Assets\Monochrome\64px\target.png" />
+    <Resource Include="Assets\Monochrome\64px\taxi.png" />
+    <Resource Include="Assets\Monochrome\64px\toolbox.png" />
+    <Resource Include="Assets\Monochrome\64px\tools.png" />
+    <Resource Include="Assets\Monochrome\64px\tractor.png" />
+    <Resource Include="Assets\Monochrome\64px\traffic.png" />
+    <Resource Include="Assets\Monochrome\64px\train.png" />
+    <Resource Include="Assets\Monochrome\64px\travelerbag.png" />
+    <Resource Include="Assets\Monochrome\64px\trends.png" />
+    <Resource Include="Assets\Monochrome\64px\tripod.png" />
+    <Resource Include="Assets\Monochrome\64px\trophy.png" />
+    <Resource Include="Assets\Monochrome\64px\truck.png" />
+    <Resource Include="Assets\Monochrome\64px\tv.png" />
+    <Resource Include="Assets\Monochrome\64px\typography.png" />
+    <Resource Include="Assets\Monochrome\64px\ufo.png" />
+    <Resource Include="Assets\Monochrome\64px\umbrella.png" />
+    <Resource Include="Assets\Monochrome\64px\unicycle.png" />
+    <Resource Include="Assets\Monochrome\64px\unlocked.png" />
+    <Resource Include="Assets\Monochrome\64px\upload.png" />
+    <Resource Include="Assets\Monochrome\64px\video.png" />
+    <Resource Include="Assets\Monochrome\64px\videocameraclassic.png" />
+    <Resource Include="Assets\Monochrome\64px\videocameracompact.png" />
+    <Resource Include="Assets\Monochrome\64px\volume.png" />
+    <Resource Include="Assets\Monochrome\64px\water.png" />
+    <Resource Include="Assets\Monochrome\64px\weather.png" />
+    <Resource Include="Assets\Monochrome\64px\windsock.png" />
+    <Resource Include="Assets\Monochrome\64px\windy.png" />
+    <Resource Include="Assets\Monochrome\64px\x.png" />
+    <Resource Include="Assets\Monochrome\64px\zoomin.png" />
+    <Resource Include="Assets\Monochrome\64px\zoomout.png" />
+    <Content Include="Common\Styles\add.png" />
+    <Content Include="Common\Styles\appbar.arrow.right.png" />
+    <Content Include="Common\Styles\appbar.close.png" />
+    <Content Include="Common\Styles\appbar.list.png" />
+    <Content Include="Common\Styles\minus.png" />
+    <Resource Include="Resources\POStatus.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Common\Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\Datagrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\RoundClose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\TabItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Styles\ToggleSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Vectors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CorkBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RequestCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RotatingButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SlidePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StickItNote.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Switcher.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Services\MessengerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

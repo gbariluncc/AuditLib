@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="AuditControls.Controls.SlidePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:AuditControls.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="5" Direction="-45" ShadowDepth="5" RenderingBias="Quality" />
+    </UserControl.Effect>
+    <Grid x:Name="RootElement">
+        <DockPanel Background="{StaticResource SteelBlue}" x:Name="WorkContainer">
+            <StackPanel x:Name="MainControls" 
+                        Orientation="Horizontal" 
+                        DockPanel.Dock="Bottom" FlowDirection="RightToLeft" Margin="5">
+                <Controls:RotatingButton x:Name="btnNext" Margin="5" Width="40" CanRotate="False" Command="{Binding Path=Command}"/>
+                <Button Name="btnCancel" Margin="5" Cursor="Hand"
+                        Template="{StaticResource RoundClose}" Width="40" Foreground="Black" Click="btnCancel_Click" />
+            </StackPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.ColumnSpan="2" Name="canvSlider" Height="40">
+                    <Controls:RotatingButton x:Name="Slider" Width="35" Margin="3" Loaded="Slider_Loaded" />
+                </Canvas>
+            </Grid>
+            <Frame Name="frameLeft" Grid.Column="1" Width="470" Margin="5,5,0,5" DockPanel.Dock="Left" NavigationUIVisibility="Hidden" />
+            <Frame Name="frameRight" Grid.Column="0" NavigationUIVisibility="Hidden" />
+        </DockPanel>
+
+        <Grid x:Name="SpinnerContainer" Visibility="Collapsed">
+            <Grid Background="Black" Opacity="0.3" />
+            <Controls:CircularProgressBar x:Name="BusyIndicator" Width="60" />
+        </Grid>
+    </Grid>
+</UserControl>

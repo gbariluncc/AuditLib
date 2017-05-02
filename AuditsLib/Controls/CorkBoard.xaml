@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="AuditControls.Controls.CorkBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:VM="clr-namespace:AuditControls.Model"
+             xmlns:Controls="clr-namespace:AuditControls.Controls"
+             Unloaded="UserControl_Unloaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <VM:CorkboardViewModel x:Key="Model" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid Panel.ZIndex="-1" x:Name="BackgroundElement" Background="White">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="1" Grid.Row="1" Source="/Assets/Logos/LowesWhite.png" />
+
+        </Grid>
+        <Grid x:Name="RootElement" DataContext="{StaticResource Model}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid  />
+            <DockPanel Background="{StaticResource PrimaryTheme}">
+                <Button DockPanel.Dock="Left" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" Command="{Binding Path=AddNote}">
+                    <Path Data="{StaticResource AddCircle}" Fill="White" Stretch="Uniform" />
+                </Button>
+                <TextBlock DockPanel.Dock="Left" Text="Notes:" FontSize="18" FontFamily="Elephant" Foreground="White" Margin="5" />
+                <!--<Button DockPanel.Dock="Right" Width="30" HorizontalAlignment="Right" Command="{Binding Path=SaveNote}">Save</Button> -->
+            </DockPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Background="Transparent">
+                <ItemsControl ItemsSource="{Binding Path=StickItNotes, Mode=OneWay,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Controls:StickItNote
+                                Date="{Binding Path=Date, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                                CloseCommand="{Binding Path=DeleteNote}"
+                                NoteText="{Binding Path=NoteText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>
